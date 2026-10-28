@@ -104,5 +104,5 @@ jobs:
           gh release create "$TAG" dist/* \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
-            --title "Corner Kangaroo ${TAG#v}" \
+            --title "Pocket Roo ${TAG#v}" \
             --generate-notes

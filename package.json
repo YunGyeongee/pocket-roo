@@ -1,6 +1,6 @@
 {
   "name": "pocket-roo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "A tiny pixel-art kangaroo kickboxing game that lives in the corner of your screen.",
   "main": "dist-electron/main.js",
@@ -28,7 +28,7 @@
   },
   "build": {
     "appId": "com.pocketroo.app",
-    "productName": "Corner Kangaroo",
+    "productName": "Pocket Roo",
     "files": [
       "dist/**",
       "dist-electron/**",
@@ -43,7 +43,7 @@
         "dmg",
         "zip"
       ],
-      "artifactName": "corner-kangaroo-${version}-mac-${arch}.${ext}"
+      "artifactName": "pocket-roo-${version}-mac-${arch}.${ext}"
     },
     "electronFuses": {
       "runAsNode": false,
@@ -72,12 +72,12 @@
           ]
         }
       ],
-      "artifactName": "corner-kangaroo-${version}-windows-${arch}.${ext}"
+      "artifactName": "pocket-roo-${version}-windows-${arch}.${ext}"
     },
     "nsis": {
       "oneClick": true,
       "perMachine": false,
-      "artifactName": "corner-kangaroo-${version}-windows-setup.${ext}"
+      "artifactName": "pocket-roo-${version}-windows-setup.${ext}"
     }
   },
   "pnpm": {

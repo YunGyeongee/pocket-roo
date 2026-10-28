@@ -1,9 +1,9 @@
-# Corner Kangaroo
+# Pocket Roo
 
 화면 구석에 작은 복싱 링을 하나 띄워둡니다.
 코드를 짜다가, 문서를 쓰다가 잠깐 손이 비면 캥거루로 펀치와 킥을 몇 번 날리면 됩니다. 창은 다른 창 위에 떠 있지만 480×300 크기라서 하던 일을 가리지 않습니다.
 
-![빨간 글러브를 낀 캥거루가 뒷다리를 쭉 뻗어 파란 글러브를 낀 회색 CPU 캥거루를 차는 장면](docs/screenshot.png)
+![파란 글러브를 낀 회색 CPU 캥거루가 뒷다리를 쭉 뻗어 빨간 글러브를 낀 캥거루를 차는 장면](docs/screenshot.png)
 
 ## 모드
 
@@ -94,20 +94,20 @@ CPU는 거리를 재서 다가오고, 사거리 안에서 펀치·킥·하단 �
 
 ## 받기
 
-아래 링크를 누르면 바로 내려받아집니다. 받은 파일이 바뀌지 않았는지는 [SHA256SUMS.txt](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/SHA256SUMS.txt)로 확인할 수 있고, 지난 버전은 [Releases](https://github.com/YunGyeongee/pocket-roo/releases)에 있습니다.
+아래 링크를 누르면 바로 내려받아집니다. 받은 파일이 바뀌지 않았는지는 [SHA256SUMS.txt](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/SHA256SUMS.txt)로 확인할 수 있고, 지난 버전은 [Releases](https://github.com/YunGyeongee/pocket-roo/releases)에 있습니다.
 
 | 컴퓨터 | 내려받기 |
 | --- | --- |
-| Mac (Apple Silicon) | [corner-kangaroo-1.0.0-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-mac-arm64.dmg) |
-| Windows 설치 파일 (x64, ARM 공통) | [corner-kangaroo-1.0.0-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-setup.exe) |
-| Windows 압축 파일 (일반 PC) | [corner-kangaroo-1.0.0-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-x64.zip) |
-| Windows 압축 파일 (ARM PC) | [corner-kangaroo-1.0.0-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-arm64.zip) |
+| Mac (Apple Silicon) | [pocket-roo-1.0.1-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-mac-arm64.dmg) |
+| Windows 설치 파일 (x64, ARM 공통) | [pocket-roo-1.0.1-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-setup.exe) |
+| Windows 압축 파일 (일반 PC) | [pocket-roo-1.0.1-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-x64.zip) |
+| Windows 압축 파일 (ARM PC) | [pocket-roo-1.0.1-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-arm64.zip) |
 
 ### macOS
 
-Apple Silicon(M1 이상) Mac에서 실행됩니다. [corner-kangaroo-1.0.0-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-mac-arm64.dmg)를 받습니다.
+Apple Silicon(M1 이상) Mac에서 실행됩니다. [pocket-roo-1.0.1-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-mac-arm64.dmg)를 받습니다.
 
-1. `.dmg`를 열고 Corner Kangaroo를 응용 프로그램 폴더로 끌어다 놓습니다.
+1. `.dmg`를 열고 Pocket Roo를 응용 프로그램 폴더로 끌어다 놓습니다.
 2. 앱을 실행합니다. 아직 Apple 공증을 받지 않은 앱이라 처음에는 "확인되지 않은 개발자" 경고가 뜨고 열리지 않습니다.
 3. **시스템 설정 → 개인정보 보호 및 보안**으로 가서 아래쪽의 **그래도 열기**를 누릅니다. 한 번만 하면 됩니다.
 4. 화면 오른쪽 아래에 게임 창이 뜹니다. 모드를 고르고 Enter를 누르면 시작합니다.
@@ -117,40 +117,30 @@ Apple Silicon(M1 이상) Mac에서 실행됩니다. [corner-kangaroo-1.0.0-mac-a
 3번이 안 되면 터미널에서 아래 명령을 한 번 실행해도 됩니다.
 
 ```bash
-xattr -dr com.apple.quarantine "/Applications/Corner Kangaroo.app"
+xattr -dr com.apple.quarantine "/Applications/Pocket Roo.app"
 ```
 
 ### Windows
 
-Windows 10 이상에서 실행됩니다. [corner-kangaroo-1.0.0-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-setup.exe)를 받습니다. 설치 파일 하나로 일반 PC(x64)와 ARM PC를 모두 지원하고, 알아서 맞는 버전을 설치합니다.
+Windows 10 이상에서 실행됩니다. [pocket-roo-1.0.1-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-setup.exe)를 받습니다. 설치 파일 하나로 일반 PC(x64)와 ARM PC를 모두 지원하고, 알아서 맞는 버전을 설치합니다.
 
 1. 받은 설치 파일을 실행합니다.
 2. 아직 코드 서명을 하지 않은 앱이라 "Windows의 PC 보호" 창이 뜹니다. **추가 정보**를 누른 뒤 **실행**을 누릅니다.
 3. 관리자 권한 없이 내 계정에만 설치되고, 끝나면 바로 게임이 실행됩니다. 바탕화면과 시작 메뉴에 바로가기가 생깁니다.
 4. 화면 오른쪽 아래에 게임 창이 뜹니다. 모드를 고르고 Enter를 누르면 시작합니다.
 5. 다른 창 위에 띄워두기 싫으면 위쪽의 `PIN` 버튼을 눌러 끕니다.
-6. 지울 때는 **설정 → 앱 → 설치된 앱**에서 Corner Kangaroo를 제거합니다.
+6. 지울 때는 **설정 → 앱 → 설치된 앱**에서 Pocket Roo를 제거합니다.
 
-설치하기 싫으면 `.zip`을 받아도 됩니다. 일반 PC는 [corner-kangaroo-1.0.0-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-x64.zip), ARM PC는 [corner-kangaroo-1.0.0-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.0/corner-kangaroo-1.0.0-windows-arm64.zip)입니다. 압축을 풀고 `Corner Kangaroo.exe`를 실행하면 됩니다.
-
-## 어떻게 만들었나
-
-Electron, TypeScript, Vite로 만들었고 게임 엔진은 쓰지 않았습니다. 화면은 240×140 크기의 캔버스에 그린 다음 픽셀을 번지지 않게 키웁니다. Retina처럼 정수배로 딱 맞으면 정수배로, Windows의 125% 배율처럼 정수배로는 빈 테두리가 크게 남으면 창에 맞춰 키웁니다. Mac과 Windows가 같은 코드를 씁니다. 캥거루, 샌드백, 링, 글꼴까지 전부 코드 안의 작은 픽셀 배열로 그렸고 외부 그림 파일은 없습니다. 캥거루는 다리·몸통·머리·글러브를 따로 그려 동작마다 자리를 옮기는 방식이라, 나중에 스프라이트 시트로 바꿔도 게임 로직은 그대로 둘 수 있습니다.
-
-전투는 1/120초 고정 간격으로 계산해서 화면 주사율과 상관없이 같은 공격이 같은 거리에서 맞습니다. 공격은 준비 → 타격 → 회복 구간으로 나뉘고, 타격 구간에서 한 번 맞으면 같은 공격으로 다시 맞지 않습니다. 플레이어와 CPU의 공격이 같은 순간에 맞으면 둘 다 맞습니다. 스파링과 샌드백은 같은 판정 코드를 쓰고, 맞은 뒤의 처리(체력 감소 / 점수 기록)만 모드별로 다릅니다.
-
-게임 로직(`src/game`, `src/entities`, `src/modes`)은 화면과 분리되어 있어서 테스트에서 CPU끼리 끝까지 싸우게 할 수 있습니다. 렌더러는 Node.js에 접근할 수 없고, 창 제어에 필요한 기능 네 가지(항상 위 표시 확인·변경, 최소화, 닫기)만 preload를 통해 받습니다. 네트워크 통신은 하지 않으며 카메라·마이크 같은 권한 요청은 모두 거절합니다. 배포용 앱은 Electron fuse로 Node 실행 모드와 디버거 옵션을 끄고, 앱 파일이 변조되면 실행되지 않게 했습니다.
-
-## 남은 작업
-
-- 캥거루 동작이 아직 단순합니다. 걷기·피격·KO 프레임을 더 그리면 좋겠습니다.
-- 콤보 연결(캔슬)이나 게이지를 쓰는 초필살기는 없습니다.
-- 효과음이 없습니다.
-- 스파링에 시간 제한 라운드가 없습니다.
-- 전투 수치(피해, 사거리, 딜레이)는 첫 값이라 더 플레이해 보며 맞춰야 합니다. `src/game/CombatBalance.ts`에 모여 있습니다.
+설치하기 싫으면 `.zip`을 받아도 됩니다. 일반 PC는 [pocket-roo-1.0.1-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-x64.zip), ARM PC는 [pocket-roo-1.0.1-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-arm64.zip)입니다. 압축을 풀고 `Pocket Roo.exe`를 실행하면 됩니다.
 
 <details>
 <summary>버전 기록</summary>
+
+### 1.0.1
+
+- 앱 이름을 Corner Kangaroo에서 Pocket Roo로 바꿨습니다. 내려받는 파일 이름도 `pocket-roo-...`로 바뀝니다.
+- 픽셀 캥거루 앱 아이콘을 넣었습니다.
+- Mac에서 1.0.0을 쓰던 경우 응용 프로그램 폴더에 Corner Kangaroo가 따로 남으니 지우면 됩니다. Windows 설치 파일은 이전 버전을 알아서 바꿉니다.
 
 ### 1.0.0
 

@@ -47,7 +47,7 @@ export class ModeSelectMenu {
   draw(ctx: CanvasRenderingContext2D, time: number): void {
     ctx.fillStyle = 'rgba(26, 28, 44, 0.7)';
     ctx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-    drawCenteredText(ctx, 'CORNER KANGAROO', CENTER, 9, PALETTE.yellow, 2);
+    drawCenteredText(ctx, 'POCKET ROO', CENTER, 9, PALETTE.yellow, 2);
     drawCenteredText(ctx, 'PICK A MODE', CENTER, 22, PALETTE.lightGrey);
 
     CARDS.forEach((card, index) => {
