@@ -1,0 +1,108 @@
+# Merging a version bump into master releases it: when package.json's version has no
+# v<version> tag yet, the Mac and Windows apps are built and published as a GitHub Release,
+# which also creates the tag. Pushes that keep the version are skipped.
+# It can also be started by hand from the Actions tab, e.g. after a failed build.
+name: Release
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Run releases one at a time so two quick merges can't publish the same version twice.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      released: ${{ steps.version.outputs.released }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Is this version already released?
+        id: version
+        run: |
+          tag="v$(node -p "require('./package.json').version")"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" > /dev/null; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "$tag is already released; nothing to do."
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "Releasing $tag."
+          fi
+
+  build:
+    needs: check
+    if: needs.check.outputs.released == 'false'
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            platform: mac
+            files: |
+              release/*.dmg
+              release/*-mac-*.zip
+          - os: windows-latest
+            platform: win
+            files: |
+              release/*-windows-setup.exe
+              release/*-windows-*.zip
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+
+      - name: Package
+        run: pnpm exec electron-builder --${{ matrix.platform }} --publish never
+        env:
+          # No signing certificates yet; don't search the keychain for one.
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ matrix.files }}
+          if-no-files-found: error
+
+  publish:
+    needs: [check, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Checksums
+        working-directory: dist
+        run: |
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Create the release and its tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.check.outputs.tag }}
+        run: |
+          gh release create "$TAG" dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Corner Kangaroo ${TAG#v}" \
+            --generate-notes

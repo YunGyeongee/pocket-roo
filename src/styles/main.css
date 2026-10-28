@@ -1,0 +1,91 @@
+:root {
+  --titlebar-height: 20px;
+  --bg: #1a1c2c;
+  --bar: #000000;
+  --text: #c2c3c7;
+  --accent: #ffec27;
+  --danger: #ff004d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  user-select: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font: bold 9px/1 Menlo, Monaco, Consolas, monospace;
+  color: var(--text);
+}
+
+/* The bar is the only drag handle, so dragging never collides with clicks on the game. */
+#titlebar {
+  display: flex;
+  flex: 0 0 var(--titlebar-height);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 0 8px;
+  background: var(--bar);
+  -webkit-app-region: drag;
+  cursor: grab;
+}
+
+.title {
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.controls {
+  display: flex;
+  gap: 3px;
+  -webkit-app-region: no-drag;
+}
+
+.controls button {
+  min-width: 22px;
+  height: 14px;
+  padding: 0 4px;
+  border: 1px solid #5f574f;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  border-color: var(--text);
+  color: #fff1e8;
+}
+
+.controls button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#btn-close:hover {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: #fff1e8;
+}
+
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
