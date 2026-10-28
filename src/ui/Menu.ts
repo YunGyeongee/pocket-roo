@@ -1,7 +1,7 @@
 import { WORLD_HEIGHT, WORLD_WIDTH } from '../entities/Arena';
 import { drawCenteredText, drawText, PALETTE } from '../rendering/PixelAssets';
 
-export type MenuAction = 'resume' | 'restart' | 'moves' | 'select' | 'variant' | 'level' | 'pin' | 'quit';
+export type MenuAction = 'resume' | 'restart' | 'moves' | 'select' | 'variant' | 'level' | 'pin' | 'opacity' | 'background' | 'quit';
 
 export interface MenuItem {
   action: MenuAction;

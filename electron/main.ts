@@ -63,7 +63,10 @@ function createWindow(): void {
     fullscreenable: false,
     alwaysOnTop: true,
     show: false,
-    backgroundColor: '#1a1c2c',
+    // Always transparent: the page paints its own background, and can leave it out so only
+    // the ring and the players float over the desktop. Must be set when the window is created.
+    transparent: true,
+    backgroundColor: '#00000000',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -142,6 +145,16 @@ ipcMain.handle('window:set-always-on-top', (event, value: unknown) => {
   if (!win || typeof value !== 'boolean') return false;
   win.setAlwaysOnTop(value, 'floating');
   return win.isAlwaysOnTop();
+});
+
+// See-through mode. Never fully invisible, so the window can always be found again.
+const MIN_OPACITY = 0.2;
+
+ipcMain.handle('window:set-opacity', (event, value: unknown) => {
+  const win = senderWindow(event);
+  if (!win || typeof value !== 'number' || !Number.isFinite(value)) return 1;
+  win.setOpacity(Math.min(1, Math.max(MIN_OPACITY, value)));
+  return win.getOpacity();
 });
 
 ipcMain.on('window:minimize', (event) => senderWindow(event)?.minimize());

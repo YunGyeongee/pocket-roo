@@ -7,25 +7,26 @@
 
 ## 받기
 
-아래 링크를 누르면 바로 내려받아집니다. 받은 파일이 바뀌지 않았는지는 [SHA256SUMS.txt](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/SHA256SUMS.txt)로 확인할 수 있고, 지난 버전은 [Releases](https://github.com/YunGyeongee/pocket-roo/releases)에 있습니다.
+아래 링크를 누르면 바로 내려받아집니다. 받은 파일이 바뀌지 않았는지는 [SHA256SUMS.txt](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/SHA256SUMS.txt)로 확인할 수 있고, 지난 버전은 [Releases](https://github.com/YunGyeongee/pocket-roo/releases)에 있습니다.
 
 | 컴퓨터 | 내려받기 |
 | --- | --- |
-| Mac (Apple Silicon) | [pocket-roo-1.0.1-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-mac-arm64.dmg) |
-| Windows 설치 파일 (x64, ARM 공통) | [pocket-roo-1.0.1-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-setup.exe) |
-| Windows 압축 파일 (일반 PC) | [pocket-roo-1.0.1-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-x64.zip) |
-| Windows 압축 파일 (ARM PC) | [pocket-roo-1.0.1-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-arm64.zip) |
+| Mac (Apple Silicon) | [pocket-roo-1.0.2-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-mac-arm64.dmg) |
+| Windows 설치 파일 (x64, ARM 공통) | [pocket-roo-1.0.2-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-setup.exe) |
+| Windows 압축 파일 (일반 PC) | [pocket-roo-1.0.2-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-x64.zip) |
+| Windows 압축 파일 (ARM PC) | [pocket-roo-1.0.2-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-arm64.zip) |
 
 ### macOS
 
-Apple Silicon(M1 이상) Mac에서 실행됩니다. [pocket-roo-1.0.1-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-mac-arm64.dmg)를 받습니다.
+Apple Silicon(M1 이상) Mac에서 실행됩니다. [pocket-roo-1.0.2-mac-arm64.dmg](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-mac-arm64.dmg)를 받습니다.
 
 1. `.dmg`를 열고 Pocket Roo를 응용 프로그램 폴더로 끌어다 놓습니다.
 2. 앱을 실행합니다. 아직 Apple 공증을 받지 않은 앱이라 처음에는 "확인되지 않은 개발자" 경고가 뜨고 열리지 않습니다.
 3. **시스템 설정 → 개인정보 보호 및 보안**으로 가서 아래쪽의 **그래도 열기**를 누릅니다. 한 번만 하면 됩니다.
 4. 화면 오른쪽 아래에 게임 창이 뜹니다. 모드를 고르고 Enter를 누르면 시작합니다.
 5. 다른 창 위에 띄워두기 싫으면 위쪽의 `PIN` 버튼을 눌러 끕니다.
-6. 끌 때는 위쪽의 `X` 버튼을 누르거나 Esc 메뉴에서 `QUIT`을 고릅니다.
+6. 일하는 중이라 티 나지 않게 하려면 O 키나 위쪽의 `100%` 버튼으로 창을 흐리게 합니다. 누를 때마다 100% → 60% → 30%로 바뀝니다. B 키나 `BG` 버튼으로 배경을 끄면 링과 캥거루만 바탕화면 위에 남습니다. 둘 다 다음에 켤 때도 그대로입니다.
+7. 끌 때는 위쪽의 `X` 버튼을 누르거나 Esc 메뉴에서 `QUIT`을 고릅니다.
 
 3번이 안 되면 터미널에서 아래 명령을 한 번 실행해도 됩니다.
 
@@ -35,16 +36,17 @@ xattr -dr com.apple.quarantine "/Applications/Pocket Roo.app"
 
 ### Windows
 
-Windows 10 이상에서 실행됩니다. [pocket-roo-1.0.1-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-setup.exe)를 받습니다. 설치 파일 하나로 일반 PC(x64)와 ARM PC를 모두 지원하고, 알아서 맞는 버전을 설치합니다.
+Windows 10 이상에서 실행됩니다. [pocket-roo-1.0.2-windows-setup.exe](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-setup.exe)를 받습니다. 설치 파일 하나로 일반 PC(x64)와 ARM PC를 모두 지원하고, 알아서 맞는 버전을 설치합니다.
 
 1. 받은 설치 파일을 실행합니다.
 2. 아직 코드 서명을 하지 않은 앱이라 "Windows의 PC 보호" 창이 뜹니다. **추가 정보**를 누른 뒤 **실행**을 누릅니다.
 3. 관리자 권한 없이 내 계정에만 설치되고, 끝나면 바로 게임이 실행됩니다. 바탕화면과 시작 메뉴에 바로가기가 생깁니다.
 4. 화면 오른쪽 아래에 게임 창이 뜹니다. 모드를 고르고 Enter를 누르면 시작합니다.
 5. 다른 창 위에 띄워두기 싫으면 위쪽의 `PIN` 버튼을 눌러 끕니다.
-6. 지울 때는 **설정 → 앱 → 설치된 앱**에서 Pocket Roo를 제거합니다.
+6. 일하는 중이라 티 나지 않게 하려면 O 키나 위쪽의 `100%` 버튼으로 창을 흐리게 합니다. 누를 때마다 100% → 60% → 30%로 바뀝니다. B 키나 `BG` 버튼으로 배경을 끄면 링과 캥거루만 바탕화면 위에 남습니다. 둘 다 다음에 켤 때도 그대로입니다.
+7. 지울 때는 **설정 → 앱 → 설치된 앱**에서 Pocket Roo를 제거합니다.
 
-설치하기 싫으면 `.zip`을 받아도 됩니다. 일반 PC는 [pocket-roo-1.0.1-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-x64.zip), ARM PC는 [pocket-roo-1.0.1-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.1/pocket-roo-1.0.1-windows-arm64.zip)입니다. 압축을 풀고 `Pocket Roo.exe`를 실행하면 됩니다.
+설치하기 싫으면 `.zip`을 받아도 됩니다. 일반 PC는 [pocket-roo-1.0.2-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-x64.zip), ARM PC는 [pocket-roo-1.0.2-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.2/pocket-roo-1.0.2-windows-arm64.zip)입니다. 압축을 풀고 `Pocket Roo.exe`를 실행하면 됩니다.
 
 ## 모드
 
@@ -75,6 +77,8 @@ CPU 캥거루와 1:1로 싸웁니다. 상대의 체력을 먼저 0으로 만들�
 | R | 처음부터 다시 | 기록을 지우고 다시 |
 | T | | 자유 연습 / 타임 어택 바꾸기 |
 | Esc | 멈추고 메뉴 열기 | 멈추고 메뉴 열기 |
+| O | 창 투명도 바꾸기 (100% → 60% → 30%) | 창 투명도 바꾸기 (100% → 60% → 30%) |
+| B | 배경 끄기/켜기 (링과 캥거루만 남김) | 배경 끄기/켜기 (링, 샌드백, 캥거루만 남김) |
 
 방향키(← → ↑ ↓)로도 움직일 수 있습니다. 창은 맨 위 검은 막대를 잡고 끌어서 옮깁니다. 게임 화면은 창 이동에 쓰이지 않아서 클릭이 막대와 섞이지 않습니다.
 
@@ -119,11 +123,11 @@ Space를 누르면 뒤로 빠르게 물러납니다. 물러나기 시작한 직�
 
 ### CPU도 같은 규칙으로 싸웁니다
 
-CPU는 거리를 재서 다가오고, 사거리 안에서 펀치·킥·하단 공격·필살기를 섞어 씁니다. 가끔 점프해서 들어오고, 내가 점프하면 어퍼컷으로 받아치기도 합니다. 내가 공격하면 조금 늦게 반응해서 높이에 맞춰 막거나 피하고, 체력이 낮아지면 조심스러워집니다. 가끔 거리를 잘못 재기도 합니다.
+CPU는 거리를 재서 다가오고, 사거리 안에서 펀치·킥·하단 공격·필살기를 섞어 씁니다. 가끔 점프해서 들어오고, 내가 점프하면 어퍼컷으로 받아치기도 합니다. 내가 공격하면 조금 늦게 반응해서 높이에 맞춰 막거나 피하고, 체력이 낮아지면 조심스러워집니다. 가끔 거리를 잘못 재기도 합니다. Esc 메뉴의 `LEVEL`에서 EASY, NORMAL, HARD 중에 고를 수 있습니다.
 
 ### 이기면 왕관을 씁니다
 
-스파링에서 이긴 캥거루는 왕관을 쓰고 글러브를 들어 올립니다. Esc 메뉴의 `LEVEL`에서 EASY, NORMAL, HARD 중에 고를 수 있습니다.
+스파링에서 이긴 캥거루는 왕관을 쓰고 글러브를 들어 올립니다.
 
 ### 샌드백 점수
 
@@ -135,6 +139,13 @@ CPU는 거리를 재서 다가오고, 사거리 안에서 펀치·킥·하단 �
 
 <details>
 <summary>버전 기록</summary>
+
+### 1.0.2
+
+- 투명 모드를 넣었습니다. O 키나 위쪽의 `100%` 버튼으로 창을 100% → 60% → 30%로 흐리게 합니다.
+- 배경을 끌 수 있습니다. B 키나 `BG` 버튼을 누르면 벽·관중·조명이 사라지고 링과 캥거루만 바탕화면 위에 남습니다.
+- 두 설정 모두 다음에 켤 때도 그대로입니다. Esc 메뉴에서도 바꿀 수 있습니다.
+- CPU가 조금 강해졌습니다. 반응이 빨라지고, 더 자주 공격하고, 더 잘 막고, 점프를 어퍼컷으로 더 자주 받아칩니다. EASY / NORMAL / HARD 모두 올랐습니다.
 
 ### 1.0.1
 

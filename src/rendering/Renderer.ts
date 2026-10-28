@@ -27,7 +27,10 @@ export class Renderer {
   private readonly ctx: CanvasRenderingContext2D;
   private readonly buffer: HTMLCanvasElement;
   private readonly bufferCtx: CanvasRenderingContext2D;
-  private readonly background: HTMLCanvasElement;
+  private readonly backdrop: HTMLCanvasElement;
+  private readonly structures: HTMLCanvasElement;
+  /** Off: only the ring and the kangaroos are drawn, and the rest of the window stays see-through. */
+  showBackground = true;
   private scale = 1;
   private offsetX = 0;
   private offsetY = 0;
@@ -37,8 +40,10 @@ export class Renderer {
     this.ctx = get2d(canvas);
     this.buffer = createCanvas(WORLD_WIDTH, WORLD_HEIGHT);
     this.bufferCtx = get2d(this.buffer);
-    this.background = createCanvas(WORLD_WIDTH, WORLD_HEIGHT);
-    drawBackground(get2d(this.background));
+    this.backdrop = createCanvas(WORLD_WIDTH, WORLD_HEIGHT);
+    drawBackdrop(get2d(this.backdrop));
+    this.structures = createCanvas(WORLD_WIDTH, WORLD_HEIGHT);
+    drawRing(get2d(this.structures));
     this.resize();
   }
 
@@ -78,9 +83,11 @@ export class Renderer {
 
     const ctx = this.bufferCtx;
     const shake = this.effects.shakeOffset;
+    ctx.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
     ctx.save();
     ctx.translate(shake.x, shake.y);
-    ctx.drawImage(this.background, 0, 0);
+    if (this.showBackground) ctx.drawImage(this.backdrop, 0, 0);
+    ctx.drawImage(this.structures, 0, 0);
     if (mode instanceof SparringMode) {
       // The fighter that's down is drawn first so the standing one is never hidden.
       const order = [mode.player, mode.cpu].sort((a, b) => Number(b.finished && b.health <= 0) - Number(a.finished && a.health <= 0));
@@ -97,8 +104,11 @@ export class Renderer {
 
     const out = this.ctx;
     out.imageSmoothingEnabled = false;
-    out.fillStyle = PALETTE.ink;
-    out.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    out.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if (this.showBackground) {
+      out.fillStyle = PALETTE.ink;
+      out.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
     out.drawImage(this.buffer, this.offsetX, this.offsetY, WORLD_WIDTH * this.scale, WORLD_HEIGHT * this.scale);
   }
 }
@@ -126,8 +136,8 @@ function drawShadow(ctx: CanvasRenderingContext2D, fighter: { x: number; y: numb
   ctx.fillRect(x - 7 + shrink, GROUND_Y + 1, Math.max(1, 15 - shrink * 2), 1);
 }
 
-/** Static scenery, drawn once into its own canvas: dark hall, spotlights, ropes, canvas mat. */
-function drawBackground(ctx: CanvasRenderingContext2D): void {
+/** The hall behind the ring: dark walls, crowd and spotlights. Left out when the background is off. */
+function drawBackdrop(ctx: CanvasRenderingContext2D): void {
   ctx.fillStyle = PALETTE.ink;
   ctx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
 
@@ -152,7 +162,10 @@ function drawBackground(ctx: CanvasRenderingContext2D): void {
   ctx.fillStyle = PALETTE.lightGrey;
   ctx.fillRect(66, 0, 9, 2);
   ctx.fillRect(166, 0, 9, 2);
+}
 
+/** The ring itself: canvas mat, apron, corner posts and ropes. Always drawn. */
+function drawRing(ctx: CanvasRenderingContext2D): void {
   // Canvas mat with a darker front edge, then the apron.
   ctx.fillStyle = '#d7d4e0';
   ctx.fillRect(0, MAT_TOP, WORLD_WIDTH, APRON_TOP - MAT_TOP);

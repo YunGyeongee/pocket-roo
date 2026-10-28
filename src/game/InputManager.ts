@@ -12,6 +12,8 @@ export type Action =
   | 'pause'
   | 'restart'
   | 'variant'
+  | 'opacity'
+  | 'background'
   | 'up'
   | 'down'
   | 'confirm';
@@ -31,6 +33,8 @@ export const DEFAULT_BINDINGS: KeyBindings = {
   pause: ['Escape'],
   restart: ['KeyR'],
   variant: ['KeyT'],
+  opacity: ['KeyO'],
+  background: ['KeyB'],
   up: ['KeyW', 'ArrowUp'],
   down: ['KeyS', 'ArrowDown'],
   confirm: ['Enter', 'Space', 'KeyJ'],

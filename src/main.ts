@@ -11,6 +11,7 @@ import { drawHUD } from './ui/GameHUD';
 import { Menu, type MenuAction, type MenuItem } from './ui/Menu';
 import { drawMoveList } from './ui/MoveList';
 import { ModeSelectMenu } from './ui/ModeSelectMenu';
+import { loadOpacity, loadShowBackground, nextOpacity, opacityLabel, saveOpacity, saveShowBackground } from './ui/Transparency';
 
 const api = window.cornerApi;
 
@@ -22,6 +23,8 @@ function element<T extends HTMLElement>(selector: string): T {
 
 const canvas = element<HTMLCanvasElement>('#game');
 const stage = element<HTMLElement>('#stage');
+const backgroundButton = element<HTMLButtonElement>('#btn-bg');
+const fadeButton = element<HTMLButtonElement>('#btn-fade');
 const pinButton = element<HTMLButtonElement>('#btn-pin');
 const pauseButton = element<HTMLButtonElement>('#btn-pause');
 const minimizeButton = element<HTMLButtonElement>('#btn-min');
@@ -32,6 +35,8 @@ const renderer = new Renderer(canvas);
 const modeSelect = new ModeSelectMenu();
 const menu = new Menu();
 let pinned = true;
+let opacity = loadOpacity();
+let showBackground = loadShowBackground();
 /** The move list page, opened from the pause menu. */
 let showMoves = false;
 let clock = 0;
@@ -46,6 +51,9 @@ function update(dt: number): void {
   clock += dt;
   const mode = manager.mode;
 
+  // See-through and the background switch work on every screen, even with a menu open.
+  if (input.consumePressed('opacity')) cycleOpacity();
+  if (input.consumePressed('background')) setShowBackground(!showBackground);
   if (showMoves) {
     if (input.consumePressed('pause') || input.consumePressed('confirm')) showMoves = false;
   } else if (input.consumePressed('pause')) {
@@ -104,6 +112,7 @@ function toggleVariant(mode: PunchingBagMode): void {
 function menuItems(): MenuItem[] {
   const mode = manager.mode;
   const items: MenuItem[] = [{ action: 'resume', label: () => 'RESUME' }];
+  const backgroundItem: MenuItem = { action: 'background', label: () => `BACKGROUND: ${showBackground ? 'ON' : 'OFF'}` };
   if (mode) items.push({ action: 'restart', label: () => 'RESTART' }, { action: 'moves', label: () => 'MOVE LIST' });
   if (mode instanceof SparringMode) {
     items.push({ action: 'level', label: () => `LEVEL: ${manager.difficulty.toUpperCase()}` });
@@ -112,7 +121,11 @@ function menuItems(): MenuItem[] {
     items.push({ action: 'variant', label: () => `PLAY: ${mode.variant === 'free' ? 'FREE' : `${TIME_ATTACK_SECONDS}S RUN`}` });
   }
   if (mode) items.push({ action: 'select', label: () => 'MODE SELECT' });
-  if (api) items.push({ action: 'pin', label: () => `ON TOP: ${pinned ? 'ON' : 'OFF'}` });
+  items.push(backgroundItem);
+  if (api) {
+    items.push({ action: 'opacity', label: () => `SEE-THROUGH: ${opacityLabel(opacity)}` });
+    items.push({ action: 'pin', label: () => `ON TOP: ${pinned ? 'ON' : 'OFF'}` });
+  }
   items.push({ action: 'quit', label: () => 'QUIT' });
   return items;
 }
@@ -166,6 +179,12 @@ function activate(action: MenuAction): void {
       renderer.effects.clear();
       resume();
       break;
+    case 'opacity':
+      cycleOpacity();
+      break;
+    case 'background':
+      setShowBackground(!showBackground);
+      break;
     case 'pin':
       void togglePin();
       break;
@@ -179,6 +198,30 @@ async function togglePin(): Promise<void> {
   if (!api) return;
   pinned = await api.setAlwaysOnTop(!pinned);
   pinButton.classList.toggle('active', pinned);
+  render();
+}
+
+/** Off leaves only the ring and the kangaroos over the desktop. */
+function setShowBackground(show: boolean): void {
+  showBackground = show;
+  saveShowBackground(show);
+  renderer.showBackground = show;
+  document.body.classList.toggle('clear', !show);
+  backgroundButton.classList.toggle('active', show);
+  render();
+}
+
+function cycleOpacity(): void {
+  void applyOpacity(nextOpacity(opacity));
+}
+
+async function applyOpacity(value: number): Promise<void> {
+  if (!api) return;
+  opacity = value;
+  saveOpacity(value);
+  await api.setOpacity(value);
+  fadeButton.textContent = opacityLabel(value);
+  fadeButton.classList.toggle('active', value < 1);
   render();
 }
 
@@ -225,14 +268,17 @@ canvas.addEventListener('pointermove', (event) => {
 });
 
 // Title bar buttons. Prevent focus so Space doesn't "click" them again.
-for (const button of [pinButton, pauseButton, minimizeButton, closeButton]) {
+for (const button of [backgroundButton, fadeButton, pinButton, pauseButton, minimizeButton, closeButton]) {
   button.addEventListener('mousedown', (event) => event.preventDefault());
 }
+backgroundButton.addEventListener('click', () => setShowBackground(!showBackground));
+fadeButton.addEventListener('click', cycleOpacity);
 pinButton.addEventListener('click', () => void togglePin());
 pauseButton.addEventListener('click', () => (menu.open ? resume() : pause()));
 minimizeButton.addEventListener('click', () => api?.minimize());
 closeButton.addEventListener('click', quit);
 if (!api) {
+  fadeButton.hidden = true;
   pinButton.hidden = true;
   minimizeButton.hidden = true;
 }
@@ -253,7 +299,9 @@ new ResizeObserver(() => {
 }).observe(stage);
 
 input.attach();
+setShowBackground(showBackground);
 if (api) {
+  void applyOpacity(opacity);
   void api.isAlwaysOnTop().then((value) => {
     pinned = value;
     pinButton.classList.toggle('active', pinned);
