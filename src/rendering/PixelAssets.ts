@@ -34,10 +34,13 @@ export type Skin = {
   g: string; // glove
   h: string; // glove highlight
   x: string; // glove shade
+  t: string; // trunks
+  s: string; // trunks hem
+  b: string; // trunks waistband
 };
 
 export const SKINS: Record<'left' | 'right', Skin> = {
-  // A red kangaroo with red gloves, like a cross-stitch boxing kangaroo.
+  // A red kangaroo with red gloves and trunks, like a cross-stitch boxing kangaroo.
   left: {
     k: '#2b1509',
     o: '#c8712f',
@@ -48,8 +51,11 @@ export const SKINS: Record<'left' | 'right', Skin> = {
     g: '#e3263f',
     h: '#ff8f9c',
     x: '#99142b',
+    t: '#d81e3a',
+    s: '#8c1027',
+    b: '#fff1e8',
   },
-  // A grey kangaroo with blue gloves.
+  // A grey kangaroo with blue gloves and trunks.
   right: {
     k: '#1e1a24',
     o: '#8f8394',
@@ -60,13 +66,16 @@ export const SKINS: Record<'left' | 'right', Skin> = {
     g: '#2f7fe0',
     h: '#9fd0ff',
     x: '#1a4a99',
+    t: '#2a6fd1',
+    s: '#173f8a',
+    b: '#fff1e8',
   },
 };
 
 export type Sprite = readonly string[];
 
 // Kangaroo layers, facing right. Rows may be ragged; missing cells are transparent.
-// Legend: k outline, o fur, l light fur, d dark fur, c belly, w eye shine, g/h/x glove.
+// Legend: k outline, o fur, l light fur, d dark fur, c belly, w eye shine, g/h/x glove, t/s/b trunks.
 
 const HEAD: Sprite = [
   '.kk..kk',
@@ -107,19 +116,19 @@ export const TORSO: Sprite = [
   'kooooocccccck',
   'kooooocccccck',
   'kooooocccccck',
-  '.koooocccccck',
-  '.koooooccccck',
-  '.kooooooooook',
+  '.kbbbbbbbbbbk',
+  '.kttttttttttk',
+  '.ksttttttttsk',
 ];
 
 /** Legs and tail; the last row sits on the floor. */
 export const LEGS = {
   stand: [
-    '..........koooooooook',
-    '.........kooooooooooook',
-    '........koooooooooooook',
-    '........kooooooodooook',
-    '.......koooooooodkoook',
+    '..........ktttttttttk',
+    '.........kttttttttttttk',
+    '........ktttttttttttttk',
+    '........kttttttttttttk',
+    '.......kssssssssskoook',
     '......koooooooodkkook',
     '....kkooooooookkdkook',
     '..kkoooookkkk..kook',
@@ -129,11 +138,11 @@ export const LEGS = {
   ],
   // Leaning back on the tail with one leg thrust forward, sole first.
   kick: [
-    '..........koooooooook..................kk',
-    '.........kooooooooooookkkkkkkkkkkkkkkkklk',
-    '........koooooooooooooooooooooooooooookok',
-    '........koooooooodkkkkkkkkkkkkkkkkkkkkkok',
-    '.......koooooooodk....................klk',
+    '..........ktttttttttk..................kk',
+    '.........kttttttttttttkkkkkkkkkkkkkkkkklk',
+    '........ktttttttttttttttttsoooooooooookok',
+    '........ktttttttttkkkkkkkkkkkkkkkkkkkkkok',
+    '.......ksssssssssk....................klk',
     '......koooooooodk.....................kk',
     '....kkoooooooook',
     '..kkoooookkkook',
@@ -143,29 +152,29 @@ export const LEGS = {
   ],
   // Sitting on the haunches with the tail along the floor: crouching, and the coil before a jump.
   sit: [
-    '........kooooooook',
-    '.......koooooooooook',
-    '......kooooooooooooook',
-    '...kkkoooooooooooooookkk',
+    '........kttttttttk',
+    '.......ktttttttttttk',
+    '......kttttttttttttttk',
+    '...kkkssssssssssssssskkk',
     'kkkooooooooooooooooooooook',
     'kkkkkkkkkkkkkkkkkkkkkkkkk',
   ],
   // Crouching with the tail swung out front (drawn separately) for the tail sweep.
   tuck: [
-    '........kooooooook',
-    '.......koooooooooook',
-    '......kooooooooooooook',
-    '.....kooooooooooooookkk',
+    '........kttttttttk',
+    '.......ktttttttttttk',
+    '......kttttttttttttttk',
+    '.....ksssssssssssssskkk',
     '.....koooooooooooooooook',
     '.....kkkkkkkkkkkkkkkkkkk',
   ],
   // In the air: feet tucked under, tail streaming behind.
   air: [
-    '..........koooooooook',
-    '.........kooooooooooook',
-    '........kooooooooooooook',
-    '.......kooooooooodoooook',
-    '.....kkooooooooodkooook',
+    '..........ktttttttttk',
+    '.........kttttttttttttk',
+    '........kttttttttttttttk',
+    '.......kttttttttttoooook',
+    '.....kksssssssssskooook',
     '...kkooooooooookkkoook',
     '.kkoooookk..kooooook',
     'koookk.......kkooooook',
@@ -173,13 +182,13 @@ export const LEGS = {
   ],
   // Tail drop kick: sitting back on the tail, both feet driven forward.
   dropkick: [
-    '..........koooooooook...................kk',
-    '.........kooooooooooookkkkkkkkkkkkkkkkkklk',
-    '........kooooooooooooooooooooooooooooookok',
-    '........koooooooodkkkkkkkkkkkkkkkkkkkkkkok',
-    '.......koooooooodkkkkkkkkkkkkkkkkkkkkkklkk',
-    '......kooooooooooooooooooooooooooooooookok',
-    '.....kooooooooodkkkkkkkkkkkkkkkkkkkkkkkok',
+    '..........ktttttttttk...................kk',
+    '.........kttttttttttttkkkkkkkkkkkkkkkkkklk',
+    '........ktttttttttttttttttsooooooooooookok',
+    '........ktttttttttkkkkkkkkkkkkkkkkkkkkkkok',
+    '.......kssssssssskkkkkkkkkkkkkkkkkkkkkklkk',
+    '......ktttttttttttttttttttsooooooooooookok',
+    '.....ksssssssssskkkkkkkkkkkkkkkkkkkkkkkok',
     '....kooooooookk.......................klk',
     '...kooookkkk..........................kk',
     '..kooook',
@@ -213,10 +222,10 @@ export const BODY_DOWN: Sprite = [
   '......................kk',
   '.kk..kk..............kook',
   'kdlkkdlkkkkkkkkkkkk..kook',
-  'kdlkkooooocccccccccckkoook',
-  '.kooookkoocccccccccccooook',
-  'koooooooooccccccccccooooook',
-  'kooooooookkkkkkkkkkkkoooooookkkk',
+  'kdlkkoooooccccccbtttkktttk',
+  '.kooookkooccccccbttttttttk',
+  'koooooooooccccccbttttttttok',
+  'kooooooookkkkkkkkkkkkttttoookkkk',
   '.kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
 ];
 export const BODY_DOWN_OFFSET = { x: -15, y: -8 } as const;
