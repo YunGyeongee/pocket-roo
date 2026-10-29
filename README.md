@@ -3,7 +3,7 @@
 화면 구석에 작은 복싱 링을 하나 띄워둡니다.
 코드를 짜다가, 문서를 쓰다가 잠깐 손이 비면 캥거루로 펀치와 킥을 몇 번 날리면 됩니다. 창은 다른 창 위에 떠 있지만 480×300 크기라서 하던 일을 가리지 않습니다.
 
-![파란 글러브를 낀 회색 CPU 캥거루가 뒷다리를 쭉 뻗어 빨간 글러브를 낀 캥거루를 차는 장면](docs/screenshot.png)
+![파란 글러브에 파란 트렁크를 입은 회색 CPU 캥거루가 뒷다리를 쭉 뻗어 빨간 글러브에 빨간 트렁크를 입은 캥거루를 차는 장면](docs/screenshot.png)
 
 ## 받기
 
@@ -47,6 +47,14 @@ Windows 10 이상에서 실행됩니다. [pocket-roo-1.0.3-windows-setup.exe](ht
 7. 지울 때는 **설정 → 앱 → 설치된 앱**에서 Pocket Roo를 제거합니다.
 
 설치하기 싫으면 `.zip`을 받아도 됩니다. 일반 PC는 [pocket-roo-1.0.3-windows-x64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.3/pocket-roo-1.0.3-windows-x64.zip), ARM PC는 [pocket-roo-1.0.3-windows-arm64.zip](https://github.com/YunGyeongee/pocket-roo/releases/download/v1.0.3/pocket-roo-1.0.3-windows-arm64.zip)입니다. 압축을 풀고 `Pocket Roo.exe`를 실행하면 됩니다.
+
+### 업데이트
+
+앱이 스스로 업데이트하지는 않습니다. 새 버전이 나오면 위 [받기](#받기)의 링크로 다시 받아 위와 같이 설치하면 됩니다. 저장하는 데이터가 없어서 덮어써도 잃는 것은 없습니다.
+
+- **macOS**: 새 `.dmg`를 열고 응용 프로그램 폴더로 끌어다 놓은 뒤, 같은 이름의 앱이 있다고 나오면 **대치**를 누릅니다. 새로 받은 앱이라 처음 실행할 때 "그래도 열기"나 `xattr` 명령을 다시 해야 할 수 있습니다.
+- **Windows 설치 파일**: 게임을 끈 다음 새 설치 파일을 실행하면 기존 버전 위에 덮어써집니다. 먼저 지울 필요는 없습니다.
+- **Windows `.zip`**: 새로 받은 압축을 풀어 실행하고, 예전 버전 폴더는 지웁니다.
 
 ## 모드
 

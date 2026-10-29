@@ -38,6 +38,11 @@ jobs:
             echo "Releasing $tag."
           fi
 
+      # Fail before the long build if the README has no 버전 기록 entry for this version.
+      - name: Release notes are written
+        if: steps.version.outputs.released == 'false'
+        run: node scripts/release-notes.mjs
+
   build:
     needs: check
     if: needs.check.outputs.released == 'false'
@@ -85,6 +90,7 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: dist
@@ -96,6 +102,10 @@ jobs:
           sha256sum * > SHA256SUMS.txt
           cat SHA256SUMS.txt
 
+      # The README's 버전 기록 entry; bubuddy-dev.github.io shows it as the patch notes.
+      - name: Release notes
+        run: node scripts/release-notes.mjs > release-notes.md
+
       - name: Create the release and its tag
         env:
           GH_TOKEN: ${{ github.token }}
@@ -105,4 +115,4 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "Pocket Roo ${TAG#v}" \
-            --generate-notes
+            --notes-file release-notes.md
